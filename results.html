@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Scan Results - AI Vulnerability Scanner</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #121212;
+            color: #ffffff;
+        }
+        .container {
+            text-align: center;
+            background-color: #1e1e1e;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+            width: 90%;
+            max-width: 600px;
+        }
+        h1, h2 {
+            color: #007BFF;
+        }
+        p, ul {
+            text-align: left;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        li {
+            background-color: #2a2a2a;
+            margin: 5px 0;
+            padding: 10px;
+            border-radius: 5px;
+        }
+        .btn {
+            display: inline-block;
+            padding: 10px 20px;
+            margin-top: 10px;
+            background-color: #007BFF;
+            color: #ffffff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            text-decoration: none;
+        }
+        .btn:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Scan Results</h1>
+        <h2>Target: {{ target }}</h2>
+        <h2>Open Ports</h2>
+        <ul>
+            {% for port in open_ports %}
+                <li>Port {{ port }} - Open</li>
+            {% endfor %}
+            {% if not open_ports %}
+                <li>No open ports detected.</li>
+            {% endif %}
+        </ul>
+        <h2>Vulnerabilities</h2>
+        <ul>
+            {% for vuln in vulnerabilities %}
+                <li>{{ vuln }}</li>
+            {% endfor %}
+            {% if not vulnerabilities %}
+                <li>No vulnerabilities found.</li>
+            {% endif %}
+        </ul>
+        <h2>AI Analysis</h2>
+        <p>{{ ai_report }}</p>
+        <a href="{{ url_for('download_report', filename=report_path) }}" class="btn">Download Report</a>
+    </div>
+</body>
+</html>
