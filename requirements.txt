@@ -1,0 +1,9 @@
+flask
+flask-wtf
+requests
+beautifulsoup4
+pdfkit
+torch
+transformers
+nmap
+python-nmap
